@@ -73,6 +73,11 @@ em{font-style:italic}
 .eq{margin-top:18px;font-size:15px;color:var(--terra-deep);font-style:italic}
 
 /* slide 4 phones */
+.preview-phone{margin-top:14px;display:flex;flex-direction:column;align-items:center}
+.preview-phone img{width:min(58vw,240px);border-radius:22px;box-shadow:0 14px 32px rgba(14,42,45,.3);border:1px solid rgba(14,42,45,.08);display:block}
+.s-screen{background:var(--noche);padding:0;justify-content:center;align-items:center}
+.fullphone{height:calc(100dvh - 118px);max-width:88vw;width:auto;object-fit:contain;border-radius:26px;box-shadow:0 18px 44px rgba(0,0,0,.5);display:block;margin:0 auto}
+.screen-cap{color:rgba(251,244,234,.85);font-size:13.5px;text-align:center;margin-top:12px;letter-spacing:.02em}
 .phones{display:flex;gap:14px;overflow-x:auto;padding:16px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .phone-r{flex:0 0 210px;scroll-snap-align:center}
 .phone-r img{width:100%;border-radius:22px;box-shadow:0 12px 28px rgba(14,42,45,.28);border:1px solid rgba(14,42,45,.08);display:block}
@@ -202,7 +207,7 @@ const S = {
   s4k:"La app en uso",
   s4h:"Así te ven.",
   caps:["Te encuentran en el mapa","Tu negocio, con su historia","Tu menú, siempre al día","En cada búsqueda","El pase del miembro"],
-  hint:"← desliza los teléfonos →",
+  
   s7k:"Lo que pedimos",
   s7h:"Tu parte es simple.",
   a1:"Un descuento que valga la pena",a1d:"Una cortesía para miembros Todo — no para cualquiera que pregunte. 10%, 15%, botana gratis, un caballito con tu primera cerveza… si tienes algo valioso y único para ti, mejor todavía. Tú eliges el nivel y las condiciones.",
@@ -237,7 +242,7 @@ const S = {
   s4k:"The app in use",
   s4h:"This is how they see you.",
   caps:["They find you on the map","Your business, with its story","Your menu, always current","In every search","The member pass"],
-  hint:"← swipe the phones →",
+  
   s7k:"What we ask",
   s7h:"Your part is simple.",
   a1:"A worthwhile discount",a1d:"A courtesy for Todo members — not for anyone who asks. 10%, 15%, a free appetizer, a free shot with your first beer… if there's something valuable and unique to you, even better. You choose the level and the conditions.",
@@ -292,9 +297,14 @@ function render(){
  <section class="slide">
    <div class="kicker sans">${T('s4k')}</div>
    <h2>${T('s4h')}</h2>
-   <div class="phones">${phonesHtml}</div>
-   <p class="swipe-hint">${T('hint')}</p>
+   <div class="preview-phone"><img src="${IMG.map}" alt=""><p class="phone-cap">${T('caps')[0]}</p></div>
  </section>
+
+ ${['map','venue','menu','list','pass'].map((k,i)=>`
+ <section class="slide s-screen">
+   <img class="fullphone" src="${IMG[k]}" alt="">
+   <p class="screen-cap sans">${T('caps')[i]}</p>
+ </section>`).join('')}
 
  <section class="slide">
    <span class="draft">${T('draft')}</span>
@@ -359,7 +369,7 @@ document.addEventListener('touchend', e=>{
 }, {passive:true});
 try{ cur = parseInt(localStorage.getItem('todo-deck-slide')||'0')||0; }catch(e){}
 const hm = location.hash.match(/^#s(\d+)$/); if(hm) cur = parseInt(hm[1]);
-if(cur > 5) cur = 0;
+if(cur > 10) cur = 0;
 render();
 </script>
 </body>
