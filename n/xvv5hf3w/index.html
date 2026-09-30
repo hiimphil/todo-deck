@@ -30,7 +30,7 @@ body{font-family:'Fraunces',Georgia,serif;color:var(--ink)}
 #dots span.on{background:var(--terra);width:20px;border-radius:4px}
 #lang{position:fixed;top:calc(env(safe-area-inset-top) + 12px);right:14px;z-index:60;
   font-size:12px;font-weight:700;letter-spacing:.06em;border:1.5px solid var(--ink);
-  background:transparent;color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer}
+  background:rgba(251,244,234,.85);color:#0E2A2D;border-radius:999px;padding:7px 14px;cursor:pointer;backdrop-filter:blur(4px)}
 .tapzone{position:fixed;top:0;bottom:90px;width:34%;z-index:40}
 #tapL{left:0}#tapR{right:0;width:66%}
 
@@ -52,6 +52,7 @@ em{font-style:italic}
   padding:9px 18px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
 
 /* slide 2 problems */
+.s2head{font-size:clamp(18px,5vw,25px);line-height:1.25;margin-bottom:14px}
 .probs{margin-top:6px;display:flex;flex-direction:column;gap:13px}
 .prob .neq{font-family:'Figtree',sans-serif;font-weight:800;font-size:15.5px;color:var(--terra)}
 .prob .neq .n{color:var(--sun);margin-right:7px}
@@ -153,8 +154,10 @@ em{font-style:italic}
 .ask .item b{font-size:18px;font-weight:600;display:block}
 .ask .item p{font-size:14px;color:var(--muted);margin-top:3px;line-height:1.45}
 .zero{font-size:clamp(50px,15vw,84px);color:var(--terra);line-height:1;margin:6px 0 2px}
-.decal-row{width:min(40vw,150px);margin:4px 0 10px}
-.decal-row svg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(14,42,45,.18))}
+.item-flex{display:flex;gap:14px;align-items:center}
+.item-flex>div:first-child{flex:1}
+.decal-sm{width:86px;flex-shrink:0}
+.decal-sm img{filter:drop-shadow(0 5px 12px rgba(14,42,45,.2))}
 .draft{display:inline-block;background:#f4eee2;border-radius:6px;font-size:10.5px;font-weight:700;letter-spacing:.08em;padding:4px 9px;color:var(--muted);text-transform:uppercase;font-family:-apple-system,sans-serif;margin-bottom:10px}
 
 /* slide 8 close */
@@ -192,70 +195,70 @@ const S = {
   s1k:"San Miguel de Allende",
   s1lead:"Todo bien en San Miguel.",
   s1pill:"Para negocios fundadores",
-  s2k:"Los problemas",
+  s2k:"Los problemas", s2h:"Ofreces descuentos, publicas en línea — pero ningún servicio te ayuda a ser descubierto, recordado y visitado.",
   probs:[
-   ["01","Tarjeta de descuentos ≠ Descubrimiento","Las tarjetas de hoy presumen su enorme lista de negocios afiliados — sin ayudar a sus usuarios a encontrarte a <b>ti</b>."],
-   ["02","Redes sociales ≠ Descubrimiento","Tus próximos eventos, tu menú actualizado, tus fotos hermosas — tus publicaciones solo llegan a quienes ya te siguen."],
-   ["03","Navegación ≠ Descubrimiento","Las apps de mapas tienen información desactualizada y solo muestran lo que la gente ya sabe buscar."]
+   ["01","Tarjeta de descuentos ≠ Descubrimiento","Las tarjetas de hoy prometen tus descuentos — pero no ayudan a sus usuarios a encontrarte a <b>ti</b>."],
+   ["02","Redes sociales ≠ Descubrimiento","Eventos, menús, fotos de tu cocina — tus publicaciones solo llegan a quienes ya te siguen."],
+   ["03","Navegación ≠ Descubrimiento","Los mapas que usan los turistas tienen datos viejos y solo muestran lo que la gente ya sabe pedir."]
   ],
   kick:"…y lo más importante:",
-  prob4:["04","Descubrimiento ≠ Conexión","Cuando por fin escuchan el nombre de tu negocio, eso es todo lo que saben. Un letrero, un anuncio, una recomendación — todo se olvida."],
+  prob4:["04","Descubrimiento ≠ Conexión","Cuando por fin escuchan de ti, eso es todo lo que saben. Un nombre, un letrero, una recomendación — se olvida."],
   s3k:"Nuestra solución",
   s3h:"Queremos arreglarlo juntando las piezas.",
   p1:"La Tarjeta",p1d:"Miembros que pagan por descubrir y apoyar negocios locales — sanmiguelenses, residentes y turistas.",
-  p2:"La Visibilidad",p2d:"Listas con búsqueda y filtros. Mapa GPS con direcciones. Menús al día. Favoritos. El miembro abre la app y te encuentra — a dos cuadras, hoy o mañana.",
-  p3:"La Conexión",p3d:"Información de tu negocio que cuenta una historia, crea una conexión y te hace memorable.",
-  s3eq:"Miembros que te buscan, te encuentran, te recuerdan y te visitan.",
+  p2:"El Descubrimiento",p2d:"Filtra y busca. Mapa GPS con direcciones. Menús al día. Favoritos. El miembro abre la app y encuentra dónde — y quién — eres.",
+  p3:"La Conexión",p3d:"La historia de tu negocio crea una conexión y te hace memorable.",
+  s3eq:"Los miembros te buscan, te encuentran, te recuerdan y te visitan.",
   s4k:"La app en uso",
   s4h:"Así te ven.",
   caps:["Te encuentran en el mapa","Tu negocio, con su historia","Tu menú, siempre al día","En cada búsqueda","El pase del miembro"],
   
   scrollhint:"▼ desplaza para ver más", s7k:"Lo que pedimos",
   s7h:"Tu parte es simple.",
-  a1:"Un descuento que valga la pena",a1d:"Una cortesía para miembros Todo — no para cualquiera que pregunte. 10%, 15%, botana gratis, un caballito con tu primera cerveza… si tienes algo valioso y único para ti, mejor todavía. Tú eliges el nivel y las condiciones.",
+  a1:"Un descuento que valga la pena",a1d:"Una cortesía para miembros Todo. 15% de descuento en la cuenta, botana gratis, un caballito con tu primera cerveza — tú eliges el nivel y las condiciones.",
   a2:"El sticker en tu puerta",a2d:"Para que el miembro sepa que está en el lugar correcto.",
   a3:"Tus datos al día",a3d:"Horario y fotos — te ayudamos a montarlo. Menús nuevos, horarios nuevos: entre los dos mantenemos a tus clientes informados.",
   a_cost:"pesos de inscripción",
   draft:"Borrador — términos en exploración",
   s8k:"San Miguel de Allende",
   s8h:"Todo bien en San Miguel.",
-  s8lead:"Ayudemos a que todos en San Miguel lo encuentren.",
-  wa:"Inscríbete →",
+  s8lead:"Ayudemos a todos a encontrarlo.",
+  wa:"Unirse →",
   names:"todolocal.mx · Todo · San Miguel de Allende"
  },
  en: {
   s1k:"San Miguel de Allende",
   s1lead:"All good in San Miguel.",
   s1pill:"For founding businesses",
-  s2k:"The problems",
+  s2k:"The problems", s2h:"You offer discounts, post online — but no one service is helping you get discovered, remembered, and visited.",
   probs:[
-   ["01","Discount Card ≠ Discovery","Today's cards highlight their massive list of partner businesses — without helping their users find <b>you</b>."],
-   ["02","Social Media ≠ Discovery","Your upcoming events, your updated menu, your beautiful food photography — your shares only reach the people who already follow you."],
-   ["03","Navigation ≠ Discovery","The map apps have outdated info and only tell people what they already know to ask for."]
+   ["01","Discount Card ≠ Discovery","Today's cards promise your discounts but don't help users find <b>you</b>."],
+   ["02","Social Media ≠ Discovery","Events, menus, food photography — your posts reach the feeds of people that already follow you."],
+   ["03","Navigation ≠ Discovery","The maps that tourists use have outdated info and only show people what they know to ask for."]
   ],
   kick:"…and the kicker:",
-  prob4:["04","Discovery ≠ Connection","When people do hear the name of your business, that's all they know. A sign, an ad, a recommendation — it's all fleeting."],
+  prob4:["04","Discovery ≠ Connection","When people finally hear about you, that's all they know. A name, a sign, or a recommendation — it's fleeting."],
   s3k:"Our solution",
   s3h:"We want to fix it by bringing the pieces together.",
   p1:"The Card",p1d:"Paying members who want to discover and support local businesses — locals, residents, and tourists.",
-  p2:"The Visibility",p2d:"Filterable, searchable lists. GPS maps with directions. Up-to-date menus. Favorites. A member opens the app and finds you — two blocks away, now or tomorrow.",
-  p3:"The Connection",p3d:"Information about your business that tells a story, creates a connection, and makes you memorable.",
-  s3eq:"Members looking for you, finding you, remembering you, and visiting you.",
+  p2:"Discovery",p2d:"Filter and search. GPS maps with directions. Up-to-date menus. Favorites. A member opens the app and finds where — and who — you are.",
+  p3:"The Connection",p3d:"The story of your business creates a connection, and makes you memorable.",
+  s3eq:"Members look for you, find you, remember you, and visit you.",
   s4k:"The app in use",
   s4h:"This is how they see you.",
   caps:["They find you on the map","Your business, with its story","Your menu, always current","In every search","The member pass"],
   
   scrollhint:"▼ scroll to see more", s7k:"What we ask",
   s7h:"Your part is simple.",
-  a1:"A worthwhile discount",a1d:"A courtesy for Todo members — not for anyone who asks. 10%, 15%, a free appetizer, a free shot with your first beer… if there's something valuable and unique to you, even better. You choose the level and the conditions.",
+  a1:"A worthwhile discount",a1d:"A courtesy for Todo members. 15% off their bill, a free appetizer, a free shot with your first beer — you choose the level and the conditions.",
   a2:"The sticker on your door",a2d:"So members know they're in the right place.",
   a3:"Your info up to date",a3d:"Hours and photos — we'll help you set it up. New menus, new hours: we work together to keep your customers in the know.",
   a_cost:"pesos to join",
   draft:"Draft — terms in exploration",
   s8k:"San Miguel de Allende",
-  s8h:"Todo bien en San Miguel.",
-  s8lead:"Let's help everyone in San Miguel find it.",
-  wa:"Sign Up →",
+  s8h:"All good in San Miguel.",
+  s8lead:"Let’s help everyone find it.",
+  wa:"Join Us →",
   names:"todolocal.mx · Todo · San Miguel de Allende"
  }
 };
@@ -280,6 +283,7 @@ function render(){
 
  <section class="slide">
    <div class="kicker sans">${T('s2k')}</div>
+   <p class="s2head">${T('s2h')}</p>
    <div class="probs">${probsHtml}</div>
    <p class="kick-line">${T('kick')}</p>
    <div class="probs"><div class="prob"><div class="neq"><span class="n">${p4[0]}</span>${p4[1]}</div><p class="sans">${p4[2]}</p></div></div>
@@ -317,12 +321,9 @@ function render(){
    <h2>${T('s7h')}</h2>
    <div class="ask">
      <div class="item"><b>${T('a1')}</b><p class="sans">${T('a1d')}</p></div>
-     <div class="item"><b>${T('a2')}</b><p class="sans">${T('a2d')}</p></div>
+     <div class="item item-flex"><div><b>${T('a2')}</b><p class="sans">${T('a2d')}</p></div><div class="decal-sm">${DECAL}</div></div>
      <div class="item"><b>${T('a3')}</b><p class="sans">${T('a3d')}</p></div>
    </div>
-   <div class="decal-row">${DECAL}</div>
-   <div class="zero">$0</div>
-   <p class="sans" style="font-size:13px;color:var(--muted)">${T('a_cost')}</p>
  </section>
 
  <section class="slide s-close">
