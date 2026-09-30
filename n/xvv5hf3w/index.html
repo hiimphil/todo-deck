@@ -74,8 +74,9 @@ em{font-style:italic}
 .eq{margin-top:18px;font-size:15px;color:var(--terra-deep);font-style:italic}
 
 /* slide 4 phones */
-.preview-phone{margin-top:14px;display:flex;flex-direction:column;align-items:center}
-.preview-phone img{width:min(58vw,240px);border-radius:22px;box-shadow:0 14px 32px rgba(14,42,45,.3);border:1px solid rgba(14,42,45,.08);display:block}
+.preview-scroll{margin:14px auto 0;width:min(62vw,250px);height:calc(100dvh - 320px);min-height:300px;overflow-y:auto;-webkit-overflow-scrolling:touch;border-radius:22px;box-shadow:0 14px 32px rgba(14,42,45,.3);border:1px solid rgba(14,42,45,.1)}
+.preview-img{width:100%;height:auto;display:block}
+.pv-hint{color:var(--terra);font-size:11px;letter-spacing:.05em}
 .s-screen{background:var(--noche);padding:0;display:block;overflow:hidden}
 .screen-cap{color:rgba(251,244,234,.9);font-size:13.5px;text-align:center;padding:calc(env(safe-area-inset-top) + 14px) 16px 10px;letter-spacing:.02em;background:var(--noche);position:relative;z-index:2}
 .screen-scroll{height:calc(100dvh - 118px);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 16px}
@@ -193,7 +194,7 @@ const IMG = {
 const S = {
  es: {
   s1k:"San Miguel de Allende",
-  s1lead:"Todo bien en San Miguel.",
+  s1lead:"Todo bien en San Miguel",
   s1pill:"Para negocios fundadores",
   s2k:"Los problemas", s2h:"Ofreces descuentos, publicas en línea — pero ningún servicio te ayuda a ser descubierto, recordado y visitado.",
   probs:[
@@ -221,8 +222,8 @@ const S = {
   a_cost:"pesos de inscripción",
   draft:"Borrador — términos en exploración",
   s8k:"San Miguel de Allende",
-  s8h:"Todo bien en San Miguel.",
-  s8lead:"Ayudemos a todos a encontrarlo.",
+  s8h:"Todo bien en San Miguel",
+  s8lead:"Ayudemos a todos a encontrarlo",
   wa:"Unirse →",
   names:"todolocal.mx · Todo · San Miguel de Allende"
  },
@@ -303,7 +304,8 @@ function render(){
  <section class="slide">
    <div class="kicker sans">${T('s4k')}</div>
    <h2>${T('s4h')}</h2>
-   <div class="preview-phone"><img src="${IMG.map}" alt=""><p class="phone-cap">${T('caps')[0]}</p></div>
+   <div class="preview-scroll"><img class="preview-img" src="${IMG.venue}" alt=""></div>
+   <p class="phone-cap">${T('caps')[1]} — <span class="pv-hint">${T('scrollhint')}</span></p>
  </section>
 
  ${['map','venue','menu','list','pass'].map((k,i)=>{
